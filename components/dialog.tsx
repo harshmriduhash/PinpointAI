@@ -1,5 +1,5 @@
-"use client"
-import React from 'react';
+"use client";
+import React from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,7 +10,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Task } from '@/types/type';
+import { Task } from "@/types/type";
 
 interface DialogsProps {
   showConfirmDialog: boolean;
@@ -56,12 +56,15 @@ export const Dialogs: React.FC<DialogsProps> = ({
           <AlertDialogHeader>
             <AlertDialogTitle>Export Tasks</AlertDialogTitle>
             <AlertDialogDescription>
-              This will generate a PDF summary and send it to all meeting attendees. 
-              The summary will include task descriptions, assignees, deadlines, and priorities.
+              This will generate a PDF summary and send it to all meeting
+              attendees. The summary will include task descriptions, assignees,
+              deadlines, and priorities.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel onClick={() => setShowConfirmDialog(false)}>Cancel</AlertDialogCancel>
+            <AlertDialogCancel onClick={() => setShowConfirmDialog(false)}>
+              Cancel
+            </AlertDialogCancel>
             <AlertDialogAction onClick={handleExportTasks}>
               Confirm Export
             </AlertDialogAction>
@@ -74,11 +77,14 @@ export const Dialogs: React.FC<DialogsProps> = ({
           <AlertDialogHeader>
             <AlertDialogTitle>Confirm Delete</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to delete this task? This action cannot be undone.
+              Are you sure you want to delete this task? This action cannot be
+              undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel onClick={closeDeleteDialog}>Cancel</AlertDialogCancel>
+            <AlertDialogCancel onClick={closeDeleteDialog}>
+              Cancel
+            </AlertDialogCancel>
             <AlertDialogAction onClick={confirmDeleteTask}>
               Confirm Delete
             </AlertDialogAction>
@@ -88,11 +94,9 @@ export const Dialogs: React.FC<DialogsProps> = ({
 
       <AlertDialog open={showErrorDialog} onOpenChange={setShowErrorDialog}>
         <AlertDialogContent>
-        <AlertDialogHeader>
+          <AlertDialogHeader>
             <AlertDialogTitle>Oops! Something Went Wrong</AlertDialogTitle>
-            <AlertDialogDescription>
-              {errorMessage}
-            </AlertDialogDescription>
+            <AlertDialogDescription>{errorMessage}</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogAction onClick={() => setShowErrorDialog(false)}>
@@ -116,26 +120,40 @@ export const Dialogs: React.FC<DialogsProps> = ({
                 <input
                   type="text"
                   value={editedTask.description}
-                  onChange={(e) => setEditedTask({ ...editedTask, description: e.target.value })}
+                  onChange={(e) =>
+                    setEditedTask({
+                      ...editedTask,
+                      description: e.target.value,
+                    })
+                  }
                   placeholder="Task Description"
                   className="p-2 border rounded"
                 />
                 <input
                   type="text"
                   value={editedTask.assignee}
-                  onChange={(e) => setEditedTask({ ...editedTask, assignee: e.target.value })}
+                  onChange={(e) =>
+                    setEditedTask({ ...editedTask, assignee: e.target.value })
+                  }
                   placeholder="Assignee"
                   className="p-2 border rounded"
                 />
                 <input
                   type="date"
                   value={editedTask.deadline}
-                  onChange={(e) => setEditedTask({ ...editedTask, deadline: e.target.value })}
+                  onChange={(e) =>
+                    setEditedTask({ ...editedTask, deadline: e.target.value })
+                  }
                   className="p-2 border rounded"
                 />
                 <select
                   value={editedTask.priority}
-                  onChange={(e) => setEditedTask({ ...editedTask, priority: e.target.value as Task['priority'] })}
+                  onChange={(e) =>
+                    setEditedTask({
+                      ...editedTask,
+                      priority: e.target.value as Task["priority"],
+                    })
+                  }
                   className="p-2 border rounded"
                 >
                   <option value="High">High</option>
@@ -144,7 +162,12 @@ export const Dialogs: React.FC<DialogsProps> = ({
                 </select>
                 <select
                   value={editedTask.status}
-                  onChange={(e) => setEditedTask({ ...editedTask, status: e.target.value as Task['status'] })}
+                  onChange={(e) =>
+                    setEditedTask({
+                      ...editedTask,
+                      status: e.target.value as Task["status"],
+                    })
+                  }
                   className="p-2 border rounded"
                 >
                   <option value="Pending">Pending</option>
@@ -153,8 +176,13 @@ export const Dialogs: React.FC<DialogsProps> = ({
                 </select>
                 <input
                   type="text"
-                  value={editedTask.tags.join(', ')}
-                  onChange={(e) => setEditedTask({ ...editedTask, tags: e.target.value.split(', ').map(tag => tag.trim()) })}
+                  value={editedTask.tags.join(", ")}
+                  onChange={(e) =>
+                    setEditedTask({
+                      ...editedTask,
+                      tags: e.target.value.split(", ").map((tag) => tag.trim()),
+                    })
+                  }
                   placeholder="Tags (comma separated)"
                   className="p-2 border rounded"
                 />
@@ -162,8 +190,12 @@ export const Dialogs: React.FC<DialogsProps> = ({
             )}
           </div>
           <AlertDialogFooter>
-            <AlertDialogCancel onClick={closeEditDialog}>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={handleUpdateTask}>Update Task</AlertDialogAction>
+            <AlertDialogCancel onClick={closeEditDialog}>
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction onClick={handleUpdateTask}>
+              Update Task
+            </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

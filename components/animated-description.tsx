@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 interface TypewriterTextProps {
   text: string;
@@ -12,20 +12,20 @@ interface AnimatedDescriptionProps {
   className?: string;
 }
 
-const TypewriterText: React.FC<TypewriterTextProps> = ({ 
-  text, 
-  delay = 50, 
-  className = '' 
+const TypewriterText: React.FC<TypewriterTextProps> = ({
+  text,
+  delay = 50,
+  className = "",
 }) => {
-  const [displayText, setDisplayText] = useState<string>('');
+  const [displayText, setDisplayText] = useState<string>("");
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isComplete, setIsComplete] = useState<boolean>(false);
 
   useEffect(() => {
     if (currentIndex < text.length) {
       const timeout = setTimeout(() => {
-        setDisplayText(prev => prev + text[currentIndex]);
-        setCurrentIndex(prev => prev + 1);
+        setDisplayText((prev) => prev + text[currentIndex]);
+        setCurrentIndex((prev) => prev + 1);
       }, delay);
 
       return () => clearTimeout(timeout);
@@ -35,19 +35,25 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   }, [currentIndex, delay, text]);
 
   return (
-    <span className={`${className} ${isComplete ? 'after:hidden' : 'after:inline-block after:w-0.5 after:h-5 after:bg-blue-500 after:ml-1 after:animate-blink'}`}>
+    <span
+      className={`${className} ${
+        isComplete
+          ? "after:hidden"
+          : "after:inline-block after:w-0.5 after:h-5 after:bg-blue-500 after:ml-1 after:animate-blink"
+      }`}
+    >
       {displayText}
     </span>
   );
 };
 
-const AnimatedDescription: React.FC<AnimatedDescriptionProps> = ({ 
-  children, 
-  delay = 50, 
-  className = '' 
+const AnimatedDescription: React.FC<AnimatedDescriptionProps> = ({
+  children,
+  delay = 50,
+  className = "",
 }) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -58,7 +64,7 @@ const AnimatedDescription: React.FC<AnimatedDescriptionProps> = ({
       { threshold: 0.1 }
     );
 
-    const element = document.getElementById('animated-description');
+    const element = document.getElementById("animated-description");
     if (element) {
       observer.observe(element);
     }
